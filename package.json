@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "config": "^1.29.2",
+    "koa": "^2.4.1",
+    "koa-router": "^7.3.0",
+    "node-telegram-bot-api": "^0.30.0"
+  }
+}
