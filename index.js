@@ -1,6 +1,6 @@
 import TelegramBot from 'node-telegram-bot-api'
 
-const token =TOKEN;
+const token =process.env.TOKEN;
 const port = process.env.PORT || 443;
 const host = process.env.HOST;
 const externalUrl = process.env.MYURL;
