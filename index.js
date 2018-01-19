@@ -6,7 +6,7 @@ var host = process.env.HOST;
 var externalUrl = process.env.MYURL;
 var bot = new TelegramBot(token);
 
-bot.setWebHook(externalUrl + token);
+bot.setWebHook(externalUrl +'bot' +token);
 
 bot.on('message', function (msg) {
     var chatId=msg.chatId.id;
