@@ -9,6 +9,6 @@ var bot = new TelegramBot(token);
 bot.setWebHook(externalUrl +'bot' +token);
 
 bot.on('message', function (msg) {
-    var chatId=msg.chatId.id;
+    var chatId=msg.chat.id;
     bot.sendMessage(chatId, 'Pong');
 });
