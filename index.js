@@ -41,5 +41,5 @@ bot.onText(/\/get/, function (msg) {
         }
     }
     var chatId=msg.from.id;
-    bot.sendMessage(chatId, msg.text.ToString());
+    bot.sendMessage(chatId, info);
 });
