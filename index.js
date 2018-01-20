@@ -27,11 +27,16 @@ bot.setWebHook(externalUrl +':443/bot' +token);
 console.log('Webhook has been set.')
 
 var content = fs.readFileSync("data.json");
-console.log("lbg info : \n"+ content);
+console.log("lbg info : \n"+ content[1]);
 console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[1].length+ "/n");
 
 
 bot.onText(/\/get/, function (msg) {
+    var info
+    for (i=0; i<content.length; i++)
+        if (content[i].includes(msg.text.ToString()) === true){
+        info = content[i][2]+"'s phone: +380"+ content[i][6]
+        }
     var chatId=msg.from.id;
     bot.sendMessage(chatId, msg.text.ToString());
 });
