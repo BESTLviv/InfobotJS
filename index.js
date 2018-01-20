@@ -35,8 +35,8 @@ console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[
 
 bot.onText(/\/help (.+)/, function (msg, match) {
     var info="no user found\n"
-    var search = match.toString().toLowerCase()
-    for (i=0; i<content.length; i++) {
+    var search = match[1].toLowerCase()
+    for (i=1; i<content.length; i++) {
         var objinfo = (content[i][0]+content[i][1]).toString().toLowerCase()
         console.log("search: " +search+ "; objinfo: " +objinfo+"\n")
         if (objinfo.indexOf(search) === -1) {
