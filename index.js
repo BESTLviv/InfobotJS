@@ -28,9 +28,11 @@ console.log('Webhook has been set.')
 
 var content = fs.readFileSync("data.json");
 console.log("lbg info : \n"+ content);
-console.log("\n info is loaded \n");
+console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[1].length+ "/n");
 
-bot.on('message', function (msg) {
+
+bot.onText(/\/get/, function (msg) {
+    for (i)
     var chatId=msg.from.id;
     bot.sendMessage(chatId, msg.text.ToString());
 });
