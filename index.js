@@ -33,7 +33,7 @@ console.log("lbg info : \n"+ content[1]);
 console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[1].length+ "/n");
 
 
-bot.onText(/\/get/, function (msg) {
+bot.onText(/\/help/, function (msg) {
     var info="no user found\n"
     for (i=0; i<content.length; i++) {
         if (content[i].includes(msg.text.ToString()) === true) {
