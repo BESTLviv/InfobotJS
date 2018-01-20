@@ -37,7 +37,7 @@ bot.onText(/\/help (.+)/, function (msg, match) {
     var info="no user found\n"
     for (i=0; i<content.length; i++) {
         if (content[i].includes(match[1]) === true) {
-            info = content[i][2] + "'s phone: +380" + content[i][6] + "\n"
+            info = content[i][1] + "'s phone: +380" + content[i][5] + "\n"
         }
     }
     var chatId=msg.from.id;
