@@ -15,6 +15,8 @@ in json:
 
 var TelegramBot = require( 'node-telegram-bot-api');
 var fs = require("fs");
+var content = require("data.json")
+content = JSON.parse(content)
 
 var token = process.env.TG_TOKEN;
 var port = process.env.PORT || 443;
@@ -26,7 +28,7 @@ var bot = new TelegramBot(token, {webHook:{port:process.env.PORT}});
 bot.setWebHook(externalUrl +':443/bot' +token);
 console.log('Webhook has been set.')
 
-var content = fs.readFileSync("data.json");
+//var content = fs.readFileSync("data.json");
 console.log("lbg info : \n"+ content[1]);
 console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[1].length+ "/n");
 
