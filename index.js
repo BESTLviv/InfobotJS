@@ -38,8 +38,9 @@ bot.onText(/\/help (.+)/, function (msg, match) {
     var search = match.toLowerCase()
     for (i=0; i<content.length; i++) {
         var objinfo = (content[i][0]+content[i][1]).toLowerCase()
+        console.log("search: " +search+ "; objinfo: " +objinfo+"\n")
         if (objinfo.indexOf(search) === -1) {
-            continue
+            continue;
         }
         info = content[i][1] + "'s phone: +38" + content[i][5] + "\n"
     }
