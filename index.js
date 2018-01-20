@@ -32,7 +32,6 @@ console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[
 
 
 bot.onText(/\/get/, function (msg) {
-    for (i)
     var chatId=msg.from.id;
     bot.sendMessage(chatId, msg.text.ToString());
 });
