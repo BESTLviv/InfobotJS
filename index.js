@@ -15,7 +15,7 @@ in json:
 
 var TelegramBot = require( 'node-telegram-bot-api');
 var fs = require("fs");
-var content = require("data.json")
+var content = fs.readFileSync("data.json")
 content = JSON.parse(content)
 
 var token = process.env.TG_TOKEN;
