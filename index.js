@@ -35,10 +35,13 @@ console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[
 
 bot.onText(/\/help (.+)/, function (msg, match) {
     var info="no user found\n"
+    var search = match.toLowerCase()
     for (i=0; i<content.length; i++) {
-        if (content[i].includes(match[1]) === true) {
-            info = content[i][1] + "'s phone: +38" + content[i][5] + "\n"
+        var objinfo = (content[i][0]+content[i][1]).toLowerCase()
+        if (objinfo.indexOf(search) === -1) {
+            continue
         }
+        info = content[i][1] + "'s phone: +38" + content[i][5] + "\n"
     }
     var chatId=msg.from.id;
     bot.sendMessage(chatId, info);
