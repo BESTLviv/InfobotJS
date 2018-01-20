@@ -26,11 +26,11 @@ var bot = new TelegramBot(token, {webHook:{port:process.env.PORT}});
 bot.setWebHook(externalUrl +':443/bot' +token);
 console.log('Webhook has been set.')
 
-var content = fs.readFileSync("content.txt");
+var content = fs.readFileSync("data.json");
 console.log("lbg info : \n"+ content);
 console.log("\n info is loaded \n");
 
 bot.on('message', function (msg) {
     var chatId=msg.from.id;
-    bot.sendMessage(chatId, msg.Text);
+    bot.sendMessage(chatId, msg.text.ToString());
 });
