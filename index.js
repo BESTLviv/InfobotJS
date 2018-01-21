@@ -44,7 +44,7 @@ bot.onText(/\/get (.+)/, function (msg, match) {
         }
         var phones = (content[i][5]).split(/\r\n/);
         for (var phone in phones) {
-            info = content[i][1] + "'s phone: +38" + phones[phone] + "\n"
+            info = content[i][1] + " " +content[i][0] + "'s phone: +38" + phones[phone] + "\n"
             var chatId=msg.chat.id;
             bot.sendMessage(chatId, info);
         }
