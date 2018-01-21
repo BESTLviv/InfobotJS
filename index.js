@@ -60,7 +60,6 @@ bot.on("inline_query", function (query) {
 console.log(search)
     if (search.length<3)
     {
-        var key = i+ 1000*phone
         res.push({
             type: "article",
             id: 1,
@@ -74,7 +73,7 @@ console.log(search)
     }
 
 
-    for (i=1; i<content.length; i++) {
+    for (var i=1; i<content.length; i++) {
         var objinfo = (content[i][0]+content[i][1]).toString().toLowerCase()
         if (objinfo.indexOf(search)=== -1) {
             continue;
