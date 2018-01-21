@@ -42,9 +42,13 @@ bot.onText(/\/get (.+)/, function (msg, match) {
         if (objinfo.indexOf(search) === -1) {
             continue;
         }
-        info = content[i][1] + "'s phone: +38" + content[i][5] + "\n"
-        var chatId=msg.from.id;
-        bot.sendMessage(chatId, info);
+        var phones = (content[i][5]).split(/\r\n/);
+        for (var phone in phones) {
+            info = content[i][1] + "'s phone: +38" + phones[phone] + "\n"
+            var chatId=msg.from.id;
+            bot.sendMessage(chatId, info);
+        }
+
     }
 });
 
@@ -64,16 +68,15 @@ bot.on("inline_query", function (query) {
         }
        var phones = (content[i][5]).split(/\r\n/);
         for (var phone in phones) {
-            var index=phones.indexOf(phone)
-            console.log(index)
-            var key = 1+ 1000*index
-            info = content[i][1] + "'s phone: +38" + phone + "\n"
+
+            var key = 1+ 1000*phone
+            //info = content[i][1] + "'s phone: +38" + phones[phone] + "\n"
             res.push({
                 type: "article",
                 id: key,
                 title: content[i][0] + " " + content[i][1],
                 input_message_content: {
-                    phone_number: "+38" + phone,
+                    phone_number: "+38" + phones[phone],
                     first_name: content[i][1],
                     last_name: content[i][0],
                 }
