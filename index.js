@@ -67,7 +67,7 @@ bot.on("inline_query", function (query) {
             info = content[i][1] + "'s phone: +38" + phone + "\n"
             res.push({
                 type: "article",
-                id: i+1000*phones.indexOf(phone),
+                id: (i+1000*phones.indexOf(phone)),
                 title: content[i][0] + " " + content[i][1],
                 input_message_content: {
                     phone_number: "+38" + content[i][5],
@@ -78,5 +78,6 @@ bot.on("inline_query", function (query) {
         }
 
     }
+    console.log(res)
 bot.answerInlineQuery(query.id, res)
 });
