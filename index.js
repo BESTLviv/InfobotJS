@@ -29,8 +29,7 @@ bot.setWebHook(externalUrl +':443/bot' +token);
 console.log('Webhook has been set.')
 
 //var content = fs.readFileSync("data.json");
-console.log("lbg info : \n"+ content[1]);
-console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[1].length+ "/n");
+console.log("content loaded")
 
 
 bot.onText(/\/get (.+)/, function (msg, match) {
@@ -38,7 +37,6 @@ bot.onText(/\/get (.+)/, function (msg, match) {
     var search = match[1].toLowerCase()
     for (i=1; i<content.length; i++) {
         var objinfo = (content[i][0]+content[i][1]).toString().toLowerCase()
-        console.log("search: " +search+ "; objinfo: " +objinfo+"\n")
         if (objinfo.indexOf(search) === -1) {
             continue;
         }
@@ -46,7 +44,8 @@ bot.onText(/\/get (.+)/, function (msg, match) {
         for (var phone in phones) {
             info = content[i][1] + " " +content[i][0] + "'s phone: +38" + phones[phone] + "\n"
             var chatId=msg.chat.id;
-            bot.sendMessage(chatId, info);
+            console.log(info)
+            bot.sendMessage(chatId, info)
         }
 
     }
@@ -58,18 +57,32 @@ bot.on("inline_query", function (query) {
     var info="no user found\n"
     console.log(query)
     var search = query.query.toString().toLowerCase()
+
+    if (search.length<3)
+    {
+        var key = i+ 1000*phone
+        res.push({
+            type: "article",
+            id: 1,
+            title: "Not enough symbols",
+            input_message_content: {
+                text: ""
+            }
+        })
+        bot.answerInlineQuery(query.id, res)
+        return
+    }
+
+
     for (i=1; i<content.length; i++) {
         var objinfo = (content[i][0]+content[i][1]).toString().toLowerCase()
-        console.log("search: " +search+ "; objinfo: " +objinfo+"\n")
-        matchpos = objinfo.indexOf(search, matchpos)
-        if ( matchpos=== -1) {
-            matchpos=0
+        if (objinfo.indexOf(search)=== -1) {
             continue;
         }
        var phones = (content[i][5]).split(/\r\n/);
         for (var phone in phones) {
 
-            var key = 1+ 1000*phone
+            var key = i+ 1000*phone
             //info = content[i][1] + "'s phone: +38" + phones[phone] + "\n"
             res.push({
                 type: "article",
