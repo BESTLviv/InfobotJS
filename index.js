@@ -62,7 +62,7 @@ bot.on("inline_query", function (query) {
             matchpos=0
             continue;
         }
-        phones = (content[i][5]).split('\r\n');
+        phones = (content[i][5]).split(/\r\n/);
         for (var phone in phones) {
             info = content[i][1] + "'s phone: +38" + phone + "\n"
             res.push({
