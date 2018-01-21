@@ -33,7 +33,7 @@ console.log("lbg info : \n"+ content[1]);
 console.log("\n info is loaded, len = "+ content.length+ " 1 obj len: "+content[1].length+ "/n");
 
 
-bot.onText(/\/help (.+)/, function (msg, match) {
+bot.onText(/\/get (.+)/, function (msg, match) {
     var info="no user found\n"
     var search = match[1].toLowerCase()
     for (i=1; i<content.length; i++) {
@@ -43,7 +43,37 @@ bot.onText(/\/help (.+)/, function (msg, match) {
             continue;
         }
         info = content[i][1] + "'s phone: +38" + content[i][5] + "\n"
+        var chatId=msg.from.id;
+        bot.sendMessage(chatId, info);
     }
-    var chatId=msg.from.id;
-    bot.sendMessage(chatId, info);
+});
+
+bot.on("inline_query", function (query) {
+    var res = []
+    var matchpos = 0
+    var info="no user found\n"
+    var search = query.toLowerCase()
+    for (i=1; i<content.length; i++) {
+        var objinfo = (content[i][0]+content[i][1]).toString().toLowerCase()
+        console.log("search: " +search+ "; objinfo: " +objinfo+"\n")
+        matchpos = objinfo.indexOf(search, matchpos)
+        if ( matchpos=== -1) {
+            matchpos=0
+            continue;
+        }
+        info = content[i][1] + "'s phone: +38" + content[i][5] + "\n"
+
+        res.push({
+            type: "article",
+            id: i,
+            title: content[i][0]+" "+content[i][1],
+            input_message_content: {
+                phone_number: "+38"+content[i][5],
+                first_name: content[i][1],
+                last_name:  content[i][0],
+            }
+        })
+
+    }
+bot.answerInlineQuery(query.id, res)
 });
