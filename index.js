@@ -57,7 +57,7 @@ bot.on("inline_query", function (query) {
     var info="no user found\n"
     console.log(query)
     var search = query.query.toString().toLowerCase()
-console.log(search)
+
     if (search.length<3)
     {
         res.push({
@@ -65,7 +65,7 @@ console.log(search)
             id: 1,
             title: "Not enough symbols",
             input_message_content: {
-                message_text: ""
+                message_text: "Try more symbols"
             }
         })
         bot.answerInlineQuery(query.id, res)
