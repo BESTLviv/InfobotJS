@@ -53,7 +53,7 @@ bot.on("inline_query", function (query) {
     var matchpos = 0
     var info="no user found\n"
     console.log(query)
-    var search = query.toString().toLowerCase()
+    var search = query.query.toString().toLowerCase()
     for (i=1; i<content.length; i++) {
         var objinfo = (content[i][0]+content[i][1]).toString().toLowerCase()
         console.log("search: " +search+ "; objinfo: " +objinfo+"\n")
