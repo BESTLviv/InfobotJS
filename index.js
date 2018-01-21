@@ -63,9 +63,10 @@ bot.on("inline_query", function (query) {
             continue;
         }
        var phones = (content[i][5]).split(/\r\n/);
-        console.log(phones)
         for (var phone in phones) {
-            var key = 1+ 1000*phones.indexOf(phone)
+            var index=phones.indexOf(phone)
+            console.log(index)
+            var key = 1+ 1000*index
             info = content[i][1] + "'s phone: +38" + phone + "\n"
             res.push({
                 type: "article",
