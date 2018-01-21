@@ -62,18 +62,20 @@ bot.on("inline_query", function (query) {
             matchpos=0
             continue;
         }
-        info = content[i][1] + "'s phone: +38" + content[i][5] + "\n"
-
-        res.push({
-            type: "article",
-            id: i,
-            title: content[i][0]+" "+content[i][1],
-            input_message_content: {
-                phone_number: "+38"+content[i][5],
-                first_name: content[i][1],
-                last_name:  content[i][0],
-            }
-        })
+        phones = (content[i][5]).split('\r\n');
+        for (var phone in phones) {
+            info = content[i][1] + "'s phone: +38" + phone + "\n"
+            res.push({
+                type: "article",
+                id: i,
+                title: content[i][0] + " " + content[i][1],
+                input_message_content: {
+                    phone_number: "+38" + content[i][5],
+                    first_name: content[i][1],
+                    last_name: content[i][0],
+                }
+            })
+        }
 
     }
 bot.answerInlineQuery(query.id, res)
