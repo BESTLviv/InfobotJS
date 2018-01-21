@@ -57,7 +57,7 @@ bot.on("inline_query", function (query) {
     var info="no user found\n"
     console.log(query)
     var search = query.query.toString().toLowerCase()
-
+console.log(search)
     if (search.length<3)
     {
         var key = i+ 1000*phone
@@ -66,7 +66,7 @@ bot.on("inline_query", function (query) {
             id: 1,
             title: "Not enough symbols",
             input_message_content: {
-                text: ""
+                message_text: ""
             }
         })
         bot.answerInlineQuery(query.id, res)
