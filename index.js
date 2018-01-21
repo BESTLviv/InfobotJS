@@ -65,13 +65,14 @@ bot.on("inline_query", function (query) {
        var phones = (content[i][5]).split(/\r\n/);
         console.log(phones)
         for (var phone in phones) {
+            var key = 1+ 1000*phones.indexOf(phone)
             info = content[i][1] + "'s phone: +38" + phone + "\n"
             res.push({
                 type: "article",
-                id: (i+1000*phones.indexOf(phone)),
+                id: key,
                 title: content[i][0] + " " + content[i][1],
                 input_message_content: {
-                    phone_number: "+38" + content[i][5],
+                    phone_number: "+38" + phone,
                     first_name: content[i][1],
                     last_name: content[i][0],
                 }
